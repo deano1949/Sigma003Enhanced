@@ -2,7 +2,9 @@ function [OutputCollection] = sigmaa003_2023(spy_price,Ivolcurve1stm,Ivolcurve2n
 
 %% Setting for trade simulation
 Initial_AUM=200000;
-Trading_cost_per_contract=0.3; %trading cost per contract
+commission_per_contract=0.3; %commission
+bid_ask_per_contract=0.02*100; %bid_ask_spread in $ term
+Trading_cost_per_contract=commission_per_contract+bid_ask_per_contract; %trading cost per contract
 Leverage_lever=1; %Overall leverage control
 
 %% Setup
@@ -171,7 +173,7 @@ else
         Trading_cost(i)=-abs(No_contract(i-1)-No_contract(i))*Trading_cost_per_contract; %sell contracts due to de-risk
     end
 
-    Daily_PNL(i)=No_contract(i-1)*PutOpt_pnl(i); % PNL of a portfolio
+    Daily_PNL(i)=No_contract(i-1)*PutOpt_pnl(i)+Trading_cost(i); % PNL of a portfolio
     aum(i)=aum(i-1)+Daily_PNL(i);
     PNL_PI(i)=aum(i)/Initial_AUM*100; %PNL price index
 end

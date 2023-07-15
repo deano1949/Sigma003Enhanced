@@ -1,7 +1,7 @@
 %% Setting
 clc;clear;
 
-loaddata='Y';
+loaddata='N';
 TradeOptionType_range={'1stM','2ndM'};%1stM
 OptionMoneyness_range={'95OTM','97OTM','ATM','103ITM','105ITM'};%Trade 90OTM 95OTM ATM 105ITM 110ITM
 dynamic_weight='Y'; %'Decsend_only'; 'Y'
@@ -14,11 +14,11 @@ Todaystamp=datestr(today,'YYYY_mm_DD');
 OutputExcel=['Tuning_output\Master_tuning_output_SPY' Todaystamp '.xlsx'];
 %% Get data & Setting
 if strcmp(loaddata,'Y')
-    addpath('C:\Users\gly19\Dropbox\GU\1.Investment\4. Alphas (new)\42. Sigmaa003_Enhanced\Data');
+    addpath('C:\Users\gly19\Dropbox\GU\1.Investment\4. Alphas (new)\42. Sigmaa003_Enhanced\Sigmaa003_Enhanced\Data');
     loadopitondata();
 end
 
-load('C:\Users\gly19\Dropbox\GU\1.Investment\4. Alphas (new)\42. Sigmaa003_Enhanced\Data\SPYOptionData.mat');
+load('C:\Users\gly19\Dropbox\GU\1.Investment\4. Alphas (new)\42. Sigmaa003_Enhanced\Sigmaa003_Enhanced\Data\SPYOptionData.mat');
 
 
 %% Load BMK
@@ -53,8 +53,8 @@ for i=1:size(TradeOptionType_range,2)
             %% Setting for trade simulation can be found in sigmaa003_2023.m
             %Below is the default numbers
             % Initial_AUM=200000;
-            % Trading_cost_per_contract=0.3; %trading cost per contract
-            % Leverage_lever=1; %Overall leverage control
+            Trading_cost_per_contract=0.3; %trading cost per contract
+            Leverage_lever=1; %Overall leverage control
 
             %% Dyanmics weighting options
             switch dynamic_weight_type

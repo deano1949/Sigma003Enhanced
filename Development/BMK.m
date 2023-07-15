@@ -36,6 +36,4 @@ OutputCollection.Setting={'BMK',BMKname,'Long_only','No_Leverage'};
 OutputCollection.PerformanceStats=PerformanTbl;
 OutputCollection.PerformanceTS=array2timetable([Dailyreturn Excessreturn Cumpnl],'RowTimes',Datestamp,'VariableNames',{'Dailyreturn','Excessreturn','Cumpnl'});
 
-%% Testing Branches and labels
-% Check out and test the merges
-% Front Easy task to difficult task
+
